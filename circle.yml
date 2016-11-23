@@ -7,9 +7,11 @@ machine:
 dependencies:
   cache_directories:
     - "~/cache"
+    - "vendor/bundle"
   override:
-    - bundle install:
-        timeout: 180
+    - bundle -j4 --path=vendor/bundle
+#    - bundle install:
+#        timeout: 180
 database:
   pre:
     - mv config/database.yml.ci config/database.yml
