@@ -18,7 +18,7 @@ database:
   pre:
     - mv config/database.yml.ci config/database.yml
     - ./docker/build.sh
-    - docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -it -p 24224:24224 --name fluentd_logger fluentd
+    - docker run -d -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -it -p 24224:24224 --name fluentd_logger fluentd
   override:
     - bundle exec rake db:create db:schema:load RAILS_ENV=test
     - bundle exec rake db:migrate RAILS_ENV=test
