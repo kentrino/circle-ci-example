@@ -1,6 +1,8 @@
 machine:
   timezone:
     Asia/Tokyo
+  services:
+    - docker
   ruby:
     version:
       2.3.3
