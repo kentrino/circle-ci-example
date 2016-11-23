@@ -1,0 +1,16 @@
+default: &default
+  host: <%= ENV['FLUENTD_HOST'] %>
+  port: <%= ENV['FLUENTD_PORT'] %>
+  prefix: self
+
+development:
+  <<: *default
+  prefix: self.dev
+
+test:
+  <<: *default
+  prefix: self.test
+
+production:
+  <<: *default
+  prefix: self.prod
