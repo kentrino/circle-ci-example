@@ -5,12 +5,16 @@ machine:
     version:
       2.3.3
 dependencies:
+  cache_directories:
+    - "~/cache"
   override:
     - bundle install:
         timeout: 180
 database:
   pre:
     - mv config/database.yml.ci config/database.yml
+    - ./docker/build.sh
+    - docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -it -p 24224:24224 --name fluentd_logger fluentd
   override:
     - bundle exec rake db:create db:schema:load RAILS_ENV=test
     - bundle exec rake db:migrate RAILS_ENV=test
