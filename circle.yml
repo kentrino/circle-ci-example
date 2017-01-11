@@ -24,4 +24,7 @@ database:
     - bundle exec rake db:migrate RAILS_ENV=test
 test:
   override:
+    - ./script/sleep_exit_1.sh
+    - ./script/exit_1.sh
     - bundle exec rspec spec/
+
