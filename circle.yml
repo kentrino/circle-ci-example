@@ -26,5 +26,6 @@ test:
   override:
     - ./script/sleep_exit_1.sh
     - ./script/exit_1.sh
+    - echo $?
     - bundle exec rspec spec/
 
